@@ -8,13 +8,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {
-    path: 'menu',
-    component: MypageComponent
-  },
-  {
     path: '',
     component: WelcomeComponent
-  },
+  },,
   {
     path: 'product',
     component: ProductComponent
