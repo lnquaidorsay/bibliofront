@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { MypageComponent } from './mypage/mypage.component';
 import { ProductComponent } from './product/product.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'menu',
     component: MypageComponent
+  },
+  {
+    path: '',
+    component: WelcomeComponent
   },
   {
     path: 'product',
     component: ProductComponent
   }
+  
 ];
 
 // const routes: Routes = [{

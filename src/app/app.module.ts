@@ -29,10 +29,15 @@ import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 import { MypageComponent } from './mypage/mypage.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProductComponent } from './product/product.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
@@ -43,6 +48,8 @@ import { ProductComponent } from './product/product.component';
     HeaderComponent,
     MypageComponent,
     ProductComponent,
+    WelcomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,10 @@ import { ProductComponent } from './product/product.component';
     MatTableModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
