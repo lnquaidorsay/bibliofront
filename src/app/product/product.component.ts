@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;
@@ -30,21 +32,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-mypage',
-  templateUrl: './mypage.component.html',
-  styleUrls: ['./mypage.component.scss']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
 })
-export class MypageComponent implements OnInit {
+export class ProductComponent implements OnInit {
 
-  sideBarOpen = true;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor() { }
 
-  ngOnInit() { }
-
-
-  sideBarToggler(e) {
-    this.sideBarOpen = !this.sideBarOpen;
+  ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
 }

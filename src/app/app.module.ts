@@ -32,6 +32,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MypageComponent } from './mypage/mypage.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { ProductComponent } from './product/product.component';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
@@ -41,6 +42,7 @@ import {MatIconModule} from '@angular/material/icon';
     FooterComponent,
     HeaderComponent,
     MypageComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
