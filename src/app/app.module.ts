@@ -38,6 +38,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProductComponent } from './product/product.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
+import { SuscribeComponent } from './suscribe/suscribe.component';
+import { BooklistComponent } from './booklist/booklist.component';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
@@ -50,6 +52,8 @@ import { LoginComponent } from './login/login.component';
     ProductComponent,
     WelcomeComponent,
     LoginComponent,
+    SuscribeComponent,
+    BooklistComponent,
   ],
   imports: [
     BrowserModule,
