@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
+import { BookComponent } from '../book/book.component';
+//import { BookComponent } from '../book/book.component';
 
 @Component({
   selector: 'app-booklist',
@@ -19,13 +22,15 @@ export class BooklistComponent implements OnInit {
 
   searchKey: string;
 
+ // private dialog: MatDialog;
+
   displayedColumns: string[] = ['titre', 'auteur','isbn', 'date enregistrement', 'date publication', 'actions'];
   // dataSource = new MatTableDataSource<Book>(this.booksResult);
   listData: MatTableDataSource<Book>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.chargerLivres();
@@ -52,4 +57,15 @@ export class BooklistComponent implements OnInit {
       );
   }
 
+  onCreate() {
+    this.bookService.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    //dialogConfig.width = "60%";
+    dialogConfig.width = "350px";
+    this.dialog.open(BookComponent,dialogConfig);
+  }
+
 }
+

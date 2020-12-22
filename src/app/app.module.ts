@@ -40,6 +40,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { SuscribeComponent } from './suscribe/suscribe.component';
 import { BooklistComponent } from './booklist/booklist.component';
+import { BookComponent } from './book/book.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
@@ -54,6 +60,7 @@ import { BooklistComponent } from './booklist/booklist.component';
     LoginComponent,
     SuscribeComponent,
     BooklistComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,12 @@ import { BooklistComponent } from './booklist/booklist.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
