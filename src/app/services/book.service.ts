@@ -76,40 +76,28 @@ export class BookService {
 
      form: FormGroup = new FormGroup({
       $key: new FormControl(null),
-      fullName: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.email),
-      mobile: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      city: new FormControl(''),
-      gender: new FormControl('1'),
-      department: new FormControl(0),
-      hireDate: new FormControl(''),
-      isPermanent: new FormControl(false)
+      titre: new FormControl('', Validators.required),
+      auteur: new FormControl('', Validators.required),
+      isbn: new FormControl('', Validators.required),
+      totExemplaire: new FormControl('', Validators.required),
+      publiDate: new FormControl('', Validators.required),
+      categ: new FormControl('', Validators.required)
+      
     });
 
     insertEmployee(employee) {
-      // this.employeeList.push({
-      //   fullName: employee.fullName,
-      //   email: employee.email,
-      //   mobile: employee.mobile,
-      //   city: employee.city,
-      //   gender: employee.gender,
-      //   department: employee.department,
-      //    hireDate: employee.hireDate == "" ? "" : this.datePipe.transform(employee.hireDate, 'yyyy-MM-dd'),
-      //   isPermanent: employee.isPermanent
-      // });
+      
     }
 
     initializeFormGroup() {
       this.form.setValue({
         $key: null,
-        fullName: '',
-        email: '',
-        mobile: '',
-        city: '',
-        gender: '1',
-        department: 0,
-        hireDate: '',
-        isPermanent: false
+        titre: '',
+        auteur: '',
+        isbn: '',
+        totExemplaire: '',
+        publiDate: '',
+        categ:0
       });
     }
 }

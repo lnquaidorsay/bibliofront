@@ -46,6 +46,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
@@ -93,6 +94,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatGridListModule,
     MatRadioModule,
     MatSelectModule,
