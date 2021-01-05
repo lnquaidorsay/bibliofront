@@ -62,8 +62,8 @@ export class BooklistComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    //dialogConfig.width = "60%";
-    dialogConfig.width = "350px";
+    dialogConfig.width = "60%";
+    //dialogConfig.width = "350px";
     this.dialog.open(BookComponent,dialogConfig);
   }
 

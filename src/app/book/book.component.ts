@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
 
 @Component({
@@ -36,8 +37,23 @@ export class BookComponent implements OnInit {
 
   onClose() {
     this.service.form.reset();
-    //this.service.initializeFormGroup();
+    this.service.initializeFormGroup();
     this.dialogRef.close();
   }
+
+  /**
+* Save zone local date to the book releaseDate property : 
+*   there is a recognized problem with datepicker @angular/material timezone conversion.
+* @param book
+*/
+setLocalDateToDatePicker(book: Book){
+  var localDate = new Date(book.releaseDate);
+  if(localDate.getTimezoneOffset() < 0){
+      localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset() );
+  }else{
+    localDate.setMinutes(localDate.getMinutes() + localDate.getTimezoneOffset() );
+  }
+  book.releaseDate = localDate;
+}
 
 }
