@@ -48,6 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgxSpinnerModule } from 'ngx-spinner';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
@@ -99,6 +100,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatRadioModule,
     MatSelectModule,
     MatDialogModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

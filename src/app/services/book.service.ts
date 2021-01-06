@@ -39,7 +39,12 @@ export class BookService {
      * @param book
      */
      saveBook(book: Book): Observable<Book>{
-         return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book);
+      let headers = new HttpHeaders();
+      headers.append('content-type', 'application/json');
+      headers.append('accept', 'application/json');
+      //return this.http.post(url, JSON.stringify(book),httpOptions);
+      //return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book);
+      return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book, {headers: headers});
      }
      
      /**
@@ -78,7 +83,7 @@ export class BookService {
       $key: new FormControl(null),
       titre: new FormControl('', Validators.required),
       auteur: new FormControl('', Validators.required),
-      isbn: new FormControl('', Validators.required),
+      isbNum: new FormControl('', Validators.required),
       totExemplaire: new FormControl('', Validators.required),
       publiDate: new FormControl('', Validators.required),
       categ: new FormControl('', Validators.required)
@@ -94,7 +99,7 @@ export class BookService {
         $key: null,
         titre: '',
         auteur: '',
-        isbn: '',
+        isbNum: '',
         totExemplaire: '',
         publiDate: '',
         categ:0
