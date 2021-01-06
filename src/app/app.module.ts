@@ -52,6 +52,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 @NgModule({
+  entryComponents: [BookComponent],
   declarations: [
     AppComponent,
     SidebarComponent,
