@@ -63,6 +63,7 @@ saveNewBook(book: Book){
           (result: Book) => {
               console.log("Resultat du livre : ",result);
              if(result.id){
+              this.service.sendUpdate('A msg/flag');
                 this.spinner.hide();
                  console.log("Le livre a ajoute avec id : ",result.id);
                 // this.buildMessageModal('Save operation correctly done');

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 // import { environment } from 'src/environments/environment';
 import { environment } from '../../environments/environment';
 import { Book } from '../models/book';
@@ -11,8 +11,18 @@ import { Categorie } from '../models/categorie';
   providedIn: 'root'
 })
 export class BookService {
-  employeeList: [];
+  
+  private subjectName = new Subject<any>(); //need to create a subject
+
   constructor(private http: HttpClient) { }
+
+  sendUpdate(message: string) { //the component that wants to update something, calls this fn
+    this.subjectName.next({ text: message }); //next() will feed the value in Subject
+}
+
+  getUpdate(): Observable<any> { //the receiver component calls this function 
+      return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
+  }
 
   /**
      * Get all book's categories as reference data from Backend server.
@@ -90,7 +100,7 @@ export class BookService {
       
     });
 
-    insertEmployee(employee) {
+    insertbook(book) {
       
     }
 
@@ -105,4 +115,37 @@ export class BookService {
         categ:0
       });
     }
+
+
+    updatebook(book) {
+      // this.bookList.update(book.$key,
+      //   {
+      //     fullName: book.fullName,
+      //     email: book.email,
+      //     mobile: book.mobile,
+      //     city: book.city,
+      //     gender: book.gender,
+      //     department: book.department,
+      //      hireDate: book.hireDate == "" ? "" : this.datePipe.transform(book.hireDate, 'yyyy-MM-dd'),
+      //     isPermanent: book.isPermanent
+      //   });
+    }
+  
+    deletebook($key: string) {
+      //this.bookList.remove($key);
+    }
+  
+    populateForm(book) {
+      this.form.setValue({
+        $key: null,
+        titre: book['title'],
+        auteur: book['author'],
+        isbNum: book['isbn'],
+        totExemplaire: book['totalExamplaries'],
+        publiDate: book['releaseDate'],
+        categ:0
+      });
+      //this.form.setValue(_.omit(book,'departmentName'));
+    }
+
 }
