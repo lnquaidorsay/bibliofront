@@ -54,7 +54,7 @@ export class BookService {
       headers.append('accept', 'application/json');
       //return this.http.post(url, JSON.stringify(book),httpOptions);
       //return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book);
-      return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book, {headers: headers});
+      return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook2', book, {headers: headers});
      }
      
      /**
@@ -131,8 +131,19 @@ export class BookService {
       //   });
     }
   
-    deletebook($key: string) {
+    deletebook(book) {
       //this.bookList.remove($key);
+    }
+
+    deleteAbook(bookId: number):Observable<any> {
+      let url = "http://localhost:8181/book/remove";
+      const httpOptions = {
+        headers: new HttpHeaders({ 
+          'Content-Type': 'application/json',
+          'x-auth-token' : localStorage.getItem('xAuthToken')
+        })
+      };
+      return this.http.post(url,bookId,httpOptions);
     }
   
     populateForm(book) {
@@ -143,7 +154,7 @@ export class BookService {
         isbNum: book['isbn'],
         totExemplaire: book['totalExamplaries'],
         publiDate: book['releaseDate'],
-        categ:0
+        categ:book['category'].code
       });
       //this.form.setValue(_.omit(book,'departmentName'));
     }

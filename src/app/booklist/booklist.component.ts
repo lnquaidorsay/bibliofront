@@ -6,6 +6,7 @@ import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
 import { BookComponent } from '../book/book.component';
 import { Observable, Subject, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 //import { BookComponent } from '../book/book.component';
 
 @Component({
@@ -87,6 +88,13 @@ export class BooklistComponent implements OnDestroy {
   onEdit(row){
     console.log("row : ",row);
     console.log("titre : ",row['title']);
+    let cat = row['category'];
+    let code = cat.code;
+    let label = cat.label;
+    console.log("category : ",row['category']);
+    console.log("code : ",code);
+    console.log("label : ",label);
+    console.log("label2 : ",row['category'].label);
     this.bookService.populateForm(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -101,6 +109,31 @@ export class BooklistComponent implements OnDestroy {
     // this.bookService.deleteBook($key);
     // //this.notificationService.warn('! Deleted successfully');
     // }
+  }
+
+  openDialog(row) {
+    Swal.fire({
+      title: 'Voulez-vous supprimer ce livre?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Supprimer!',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
+        console.log("row pour deleted: ",row);
+         this.bookService.deleteBook(row).subscribe(data => {
+          this.bookService.sendUpdate('A msg/flag');
+          Swal.fire(
+            'Effectué!',
+            'Le livre a été supprimé.',
+            'success'
+          )
+          console.log("data return with remove : ",data);
+      },error => {
+        console.log("Erreur lors de la suppression du livre: ",error);
+      });
+    } 
+    })
   }
 
 }

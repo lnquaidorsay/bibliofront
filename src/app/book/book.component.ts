@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
 
@@ -26,7 +27,7 @@ export class BookComponent implements OnInit {
       this.book.author = formValue['auteur'];
       this.book.isbn = formValue['isbNum'];
       //this.book.releaseDate = formValue['publiDate'];
-      this.book.category = formValue['categ'];
+      this.book.category.code = formValue['categ'];
       this.book.title = formValue['titre'];
       this.book.totalExamplaries = formValue['totExemplaire'];
       var localDate = new Date(formValue['publiDate']);
@@ -35,15 +36,19 @@ export class BookComponent implements OnInit {
       }else{
         localDate.setMinutes(localDate.getMinutes() + localDate.getTimezoneOffset() );
       }
+      console.log("get value form insert : ",this.service.form.value);
       this.book.releaseDate = localDate;
       if (!this.service.form.get('$key').value){
-        console.log("get value form insert : ",this.service.form.value);
+        // console.log("get value form insert : ",this.service.form.value);
         console.log("book to insert 24 : ",this.book);
         //this.service.insertEmployee(this.service.form.value);
+        console.log("formValue['categ'] ",formValue['categ']);
         this.saveNewBook(this.book);
       }
       else {
         this.service.form.reset();
+        this.service.initializeFormGroup();
+        console.log("Categorie : ",formValue['categ']);
       }
       //this.service.updateEmployee(this.service.form.value);
       //this.service.form.reset();
@@ -77,6 +82,50 @@ saveNewBook(book: Book){
   );
 }
 
+
+  /**
+* Save new book
+* @param book
+*/
+updatBook(book: Book){
+  // this.service.saveBook(book).subscribe(
+  //         (result: Book) => {
+  //             console.log("Resultat du livre : ",result);
+  //            if(result.id){
+  //             this.service.sendUpdate('A msg/flag');
+  //            }
+  //         },
+  //         error => {
+  //              this.spinner.hide();
+  //              console.log("erreur survenue lors de  ajout : ",error);
+  //         }
+  // );
+}
+
+openDialog(book:Book) {
+  Swal.fire({
+    title: 'Voulez-vous supprimer ce livre?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Supprimer!',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.value) {
+       this.service.deleteBook(book).subscribe(data => {
+        this.service.sendUpdate('A msg/flag');
+        Swal.fire(
+          'Effectué!',
+          'Le livre a été supprimé.',
+          'success'
+        )
+        console.log("data return with remove : ",data);
+    },error => {
+      console.log("Erreur lors de la suppression du livre: ",error);
+    });
+  } 
+  })
+}
+
   onClear() {
     this.service.form.reset();
     this.service.initializeFormGroup();
@@ -87,6 +136,8 @@ saveNewBook(book: Book){
     this.service.initializeFormGroup();
     this.dialogRef.close();
   }
+
+  
 
   /**
 * Save zone local date to the book releaseDate property : 
