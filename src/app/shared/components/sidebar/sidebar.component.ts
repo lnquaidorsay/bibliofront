@@ -9,6 +9,8 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
+  logo = '../../assets/person.png';
+
   ngOnInit(): void {
   }
 

@@ -39,21 +39,19 @@ export class BookComponent implements OnInit {
       console.log("get value form insert : ",this.service.form.value);
       this.book.releaseDate = localDate;
       if (!this.service.form.get('$key').value){
-        // console.log("get value form insert : ",this.service.form.value);
+        console.log("get $key value form insert : ",this.service.form.get('$key').value);
         console.log("book to insert 24 : ",this.book);
-        //this.service.insertEmployee(this.service.form.value);
         console.log("formValue['categ'] ",formValue['categ']);
         this.saveNewBook(this.book);
       }
       else {
+        console.log("get $key value form update : ",this.service.form.get('$key').value);
+        this.book.id = this.service.form.get('$key').value;
+        this.updateABook(this.book);
         this.service.form.reset();
         this.service.initializeFormGroup();
         console.log("Categorie : ",formValue['categ']);
       }
-      //this.service.updateEmployee(this.service.form.value);
-      //this.service.form.reset();
-      //this.service.initializeFormGroup();
-      //this.notificationService.success(':: Submitted successfully');
       this.onClose();
     }
   }
@@ -84,22 +82,22 @@ saveNewBook(book: Book){
 
 
   /**
-* Save new book
+* Update a book
 * @param book
 */
-updatBook(book: Book){
-  // this.service.saveBook(book).subscribe(
-  //         (result: Book) => {
-  //             console.log("Resultat du livre : ",result);
-  //            if(result.id){
-  //             this.service.sendUpdate('A msg/flag');
-  //            }
-  //         },
-  //         error => {
-  //              this.spinner.hide();
-  //              console.log("erreur survenue lors de  ajout : ",error);
-  //         }
-  // );
+updateABook(book: Book){
+  this.service.updateBook(this.book).subscribe(
+    (result: Book) => {
+      console.log("Resultat maj livre : ",result);
+     if(result.id){
+      this.service.sendUpdate('A msg/flag');
+        console.log("Le livre est maj id : ",result.id);
+     }
+  },
+    error => {
+      console.log("update book est en erreur : ",error);
+    }
+  );
 }
 
 openDialog(book:Book) {

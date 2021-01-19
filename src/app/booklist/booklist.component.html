@@ -2,10 +2,10 @@
     <div fxFlex="60">
         <div class="search-div mr-2">
             <button mat-raised-button (click)="onCreate()">
-              <mat-icon>add</mat-icon>Create
+              <mat-icon>add</mat-icon>Nouveau Livre
             </button>
             <mat-form-field class="ml-2 search-form-field" floatLabel="never">
-              <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+              <input matInput [(ngModel)]="searchKey" placeholder="Recherchez" autocomplete="off" (keyup)="applyFilter()">
               <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
                 <mat-icon>close</mat-icon>
               </button>

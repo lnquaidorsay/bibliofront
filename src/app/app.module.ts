@@ -48,6 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSortModule} from '@angular/material/sort';
 import { NgxSpinnerModule } from 'ngx-spinner';
 //import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
@@ -101,6 +102,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatRadioModule,
     MatSelectModule,
     MatDialogModule,
+    MatSortModule,
     NgxSpinnerModule
   ],
   providers: [],

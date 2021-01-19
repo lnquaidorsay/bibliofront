@@ -2,19 +2,19 @@
     <div class="profile-card">
         <div class="header">
             <h2>Jean TATI</h2>
-            <h4>example@email.com</h4>
+            <h4>jeanT@jt.com</h4>
         </div>
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Jojo TATI">
+        <!-- <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Jojo TATI"> -->
+        <img [src]="logo" id="logo" alt="logo person">
     </div>
 
     <mat-divider></mat-divider>
 
     <h2 matSubheader>Pages</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/product">Products</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/books">Books</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/books">Livres</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/categories">Categories</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/articles">Articles</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/product">Prêts</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/articles">Retour</a>
 
     <mat-divider></mat-divider>
 

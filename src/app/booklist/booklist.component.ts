@@ -7,6 +7,7 @@ import { BookService } from '../services/book.service';
 import { BookComponent } from '../book/book.component';
 import { Observable, Subject, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { MatSort } from '@angular/material/sort';
 //import { BookComponent } from '../book/book.component';
 
 @Component({
@@ -24,6 +25,8 @@ export class BooklistComponent implements OnDestroy {
 
   searchKey: string;
 
+  dialogTitle: string;
+
   private subscriptionName: Subscription; //important to create a subscription
 
   messageReceived: any;
@@ -34,7 +37,7 @@ export class BooklistComponent implements OnDestroy {
   displayedColumns: string[] = ['titre', 'auteur','isbn', 'date enregistrement', 'date publication', 'actions'];
   // dataSource = new MatTableDataSource<Book>(this.booksResult);
   listData: MatTableDataSource<Book>;
-
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(private bookService: BookService, public dialog: MatDialog) {
@@ -66,6 +69,8 @@ export class BooklistComponent implements OnDestroy {
                 console.log("list des books : ",result);
                 this.booksResult = result;
                 this.listData = new MatTableDataSource(result);
+                this.listData.sort = this.sort;
+                this.listData.paginator = this.paginator;
                 this.pbookList=result;
                 console.log("bookResult : ",this.booksResult);
               },
@@ -85,8 +90,16 @@ export class BooklistComponent implements OnDestroy {
     this.dialog.open(BookComponent,dialogConfig);
   }
 
+  onSearchClear() {
+    this.searchKey = "";
+    this.applyFilter();
+  }
+
   onEdit(row){
+    let myValue = 1;
+    this.bookService.form.get("$key").setValue(myValue);
     console.log("row : ",row);
+    console.log("$key value : ",row['$key']);
     console.log("titre : ",row['title']);
     let cat = row['category'];
     let code = cat.code;
@@ -103,13 +116,6 @@ export class BooklistComponent implements OnDestroy {
     this.dialog.open(BookComponent,dialogConfig);
   }
 
-  onDelete($key){
-    console.log('delete book  : ',$key);
-    // if(confirm('Are you sure to delete this record ?')){
-    // this.bookService.deleteBook($key);
-    // //this.notificationService.warn('! Deleted successfully');
-    // }
-  }
 
   openDialog(row) {
     Swal.fire({

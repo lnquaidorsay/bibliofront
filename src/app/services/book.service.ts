@@ -52,8 +52,6 @@ export class BookService {
       let headers = new HttpHeaders();
       headers.append('content-type', 'application/json');
       headers.append('accept', 'application/json');
-      //return this.http.post(url, JSON.stringify(book),httpOptions);
-      //return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook', book);
       return this.http.post<Book>(environment.apiUrl+'/rest/book/api/addBook2', book, {headers: headers});
      }
      
@@ -61,9 +59,16 @@ export class BookService {
       * Update an existing Book object in the Backend server data base.
       * @param book
       */
-      updateBook(book: Book): Observable<Book>{
+      updateBook2(book: Book): Observable<Book>{
           return this.http.put<Book>(environment.apiUrl+'/rest/book/api/updateBook', book);
       }
+
+      updateBook(book: Book): Observable<Book>{
+        let headers = new HttpHeaders();
+        headers.append('content-type', 'application/json');
+        headers.append('accept', 'application/json');
+        return this.http.put<Book>(environment.apiUrl+'/rest/book/api/updateBook2', book, {headers: headers});
+       }
       
       /**
        * Delete an existing Book object in the Backend server data base.
@@ -116,25 +121,6 @@ export class BookService {
       });
     }
 
-
-    updatebook(book) {
-      // this.bookList.update(book.$key,
-      //   {
-      //     fullName: book.fullName,
-      //     email: book.email,
-      //     mobile: book.mobile,
-      //     city: book.city,
-      //     gender: book.gender,
-      //     department: book.department,
-      //      hireDate: book.hireDate == "" ? "" : this.datePipe.transform(book.hireDate, 'yyyy-MM-dd'),
-      //     isPermanent: book.isPermanent
-      //   });
-    }
-  
-    deletebook(book) {
-      //this.bookList.remove($key);
-    }
-
     deleteAbook(bookId: number):Observable<any> {
       let url = "http://localhost:8181/book/remove";
       const httpOptions = {
@@ -148,7 +134,7 @@ export class BookService {
   
     populateForm(book) {
       this.form.setValue({
-        $key: null,
+        $key: book['id'],
         titre: book['title'],
         auteur: book['author'],
         isbNum: book['isbn'],
@@ -156,7 +142,6 @@ export class BookService {
         publiDate: book['releaseDate'],
         categ:book['category'].code
       });
-      //this.form.setValue(_.omit(book,'departmentName'));
     }
 
 }
